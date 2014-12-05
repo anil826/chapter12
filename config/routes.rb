@@ -10,10 +10,16 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   get 'account_activations/:id/edit' => 'account_activations#edit', as: 'edit_account_activations'
  #get 'password_resets/:id/edit' => 'password_resets#edit', as: 'edit_password_reset'
-  resources :users
+  resources :users do
+    member do
+     get :following, :followers
+    end
+  end
   resources :password_resets, only: [:new, :create, :edit, :update]
   #delete 'microposts/:id' => 'microposts#destroy'
   resources :microposts, only: [:create, :destroy, :show]
+  resources :relationships, only: [:create, :destroy]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
