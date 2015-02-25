@@ -8,5 +8,7 @@
         <%= render @users %>
      </li>
   <%= will_paginate %>
-
+<% @nav.each do |f| %>
+ <h1> <%= f.inspect %></h1>
+  <% end %>
 </ul>
